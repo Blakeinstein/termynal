@@ -1,3 +1,4 @@
-import "./style.css";
+import "./termynal.css";
+import Termynal from "./termynal";
 
-export { sum } from "./sum";
+new Termynal("#termynal", { autoplay: true });
