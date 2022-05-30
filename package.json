@@ -1,6 +1,6 @@
 {
   "name": "termynal",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "./dist/termynal.cjs",
   "description": "An animated terminal emulator for the dom",
   "keywords": [
@@ -29,7 +29,8 @@
     "format:scripts": "prettier . --write",
     "format:styles": "stylelint ./**/*.{css,scss} --fix",
     "format": "yarn format:scripts && yarn format:styles",
-    "prepare": "husky install && husky add .husky/pre-commit 'yarn lint-staged' && git add .husky/pre-commit"
+    "prepare": "husky install && husky add .husky/pre-commit 'yarn lint-staged' && git add .husky/pre-commit",
+    "prepublish": "yarn build"
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",
