@@ -24,10 +24,11 @@ module.exports = defineConfig({
   base: "./",
   build: {
     lib: {
-      entry: path.resolve(__dirname, "src/index.ts"),
+      entry: path.resolve(__dirname, "src/Termynal.ts"),
       name: getPackageNameCamelCase(),
       formats: ["es", "cjs", "iife"],
       fileName: (format) => fileName[format],
     },
+    emptyOutDir: true,
   },
 });
