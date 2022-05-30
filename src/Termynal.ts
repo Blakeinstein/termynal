@@ -5,7 +5,7 @@ import TermynalOptions from "./TermynalOptions";
 const DefaultOptions: TermynalOptions = {
   prefix: "ty",
   startDelay: 600,
-  typeDelay: 90,
+  typeDelay: 50,
   lineDelay: 1500,
   progressLength: 40,
   progressChar: "█",
@@ -127,7 +127,7 @@ class Termynal {
    */
   async type(line: LineData) {
     const chars = line.value.split("");
-    const delay = line.delay;
+    const delay = line.typeDelay;
     const el = document.createElement("pre");
     el.textContent = "";
     this.container.appendChild(el);
