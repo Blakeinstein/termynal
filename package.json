@@ -1,15 +1,18 @@
 {
-  "name": "vite-vanilla-ts-lib-starter",
+  "name": "termynal",
   "private": true,
   "version": "0.0.0",
-  "main": "./dist/vite-ts-lib-starter.cjs",
-  "module": "./dist/vite-ts-lib-starter.mjs",
+  "main": "./dist/termynal.cjs",
+  "module": "./dist/termynal.mjs",
   "exports": {
     ".": {
-      "require": "./dist/vite-ts-lib-starter.cjs",
-      "import": "./dist/vite-ts-lib-starter.mjs"
+      "require": "./dist/termynal.cjs",
+      "import": "./dist/termynal.mjs"
     }
   },
+  "files": [
+    "dist/*"
+  ],
   "scripts": {
     "dev": "vite --host",
     "build": "tsc && vite build && dts-bundle-generator --config ./dts-bundle-generator.config.ts",
