@@ -103,7 +103,7 @@ class Termynal {
   async start() {
     await this._wait(this.options.startDelay);
     for (const line of this.lines) {
-      const type = line.type || LineType.INPUT;
+      const type = line.type || LineType.OUTPUT;
       const delay = line.delay;
       const el = document.createElement("pre");
       switch (type) {
@@ -181,7 +181,7 @@ class Termynal {
         type:
           (line.getAttribute(
             `data-${this.options.prefix}`
-          ) as LineType | null) || LineType.INPUT,
+          ) as LineType | null) || LineType.OUTPUT,
         value: line.textContent || "",
       };
       return data;
