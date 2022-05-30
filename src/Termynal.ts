@@ -14,13 +14,22 @@ const DefaultOptions: TermynalOptions = {
   autoplay: false,
 };
 
+/**
+ * Termynal is a simple terminal emulator to simulate terminal interactions with ease.
+ */
 class Termynal {
   container: HTMLElement;
   options: TermynalOptions;
   lines: LineData[];
 
+  /**
+   * Create a new Instance of Termynal.
+   * @param {string | HTMLElement} container Selector or HTMLElement that will be used as the container for the Termynal.
+   * @param {Partial<TermynalOptions>} options typeof TermynalOptions - Options for the Termynal.
+   * @param {LineData[]} lineData typeof LineData[] - Additional Lines to be rendered along with any added markup.
+   */
   constructor(
-    container = "#termynal",
+    container: string | HTMLElement = "#termynal",
     options: Partial<TermynalOptions> = {},
     lineData: LineData[] = []
   ) {
@@ -32,13 +41,14 @@ class Termynal {
       throw new Error("Termynal container not found.");
     }
     this.container = containerElement as HTMLElement;
-    this.options = this.mergeOptions(options);
+    this.options = this._mergeOptions(options);
     this.lines = lineData;
     if (this.options.autoplay) this.init();
   }
 
   /**
    * Initialise the widget, get lines, clear container and start animation.
+   * Called automatically if autoplay is set to true.
    */
   init() {
     // Appends dynamically loaded lines to existing line elements.
@@ -63,7 +73,10 @@ class Termynal {
     this.start();
   }
 
-  mergeOptions(options: Partial<TermynalOptions>): TermynalOptions {
+  /**
+   * Internal function to merge options.
+   */
+  _mergeOptions(options: Partial<TermynalOptions>): TermynalOptions {
     const attrOptions: Partial<TermynalOptions> = {};
     const dataset = this.container.dataset;
 
@@ -110,7 +123,7 @@ class Termynal {
 
   /**
    * Animate a typed line.
-   * @param {Node} line - The line element to render.
+   * @param {LineData} line - The line params to render.
    */
   async type(line: LineData) {
     const chars = line.value.split("");
@@ -127,7 +140,7 @@ class Termynal {
 
   /**
    * Animate a progress bar.
-   * @param {Node} line - The line element to render.
+   * @param {LineData} line - The progress bar params element to render.
    */
   async progress(line: LineData) {
     const { progressLength, progressChar, progressPercent } = line;
@@ -156,11 +169,10 @@ class Termynal {
   }
 
   /**
-   * Converts line data objects into line elements.
+   * Internal function to convert line elements to data objects.
    *
-   * @param {Object[]} lineData - Dynamically loaded lines.
-   * @param {Object} line - Line data object.
-   * @returns {Element[]} - Array of line elements.
+   * @param {HTMLElement[]} lines - Lines present on the markup.
+   * @returns {LineData[]} - Array of line elements.
    */
   _ElementsToLineData(lineData: HTMLElement[]): LineData[] {
     return lineData.map((line) => {
@@ -176,6 +188,11 @@ class Termynal {
     });
   }
 
+  /**
+   * Internal function to parse dataset on element.
+   * @param {HTMLElement} el The Line element to parse
+   * @returns {LineOptions} The parsed line options.
+   */
   _getLineAttributes(el: HTMLElement): LineOptions {
     const options: LineOptions = {
       delay: this._getAttributeAsFloat(el, "delay") || this.options.lineDelay,
@@ -202,6 +219,12 @@ class Termynal {
     return options;
   }
 
+  /**
+   * Internal function to parse data attribute as a float. Returns null if value is not valid.
+   * @param {HTMLElement} element The element to get attribute from.
+   * @param {keyof LineOptions} attribute The attribute key to parse.
+   * @returns
+   */
   _getAttributeAsFloat(
     element: HTMLElement,
     attribute: keyof LineOptions
