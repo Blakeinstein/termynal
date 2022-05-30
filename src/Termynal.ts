@@ -1,29 +1,6 @@
-export enum LineType {
-  INPUT = "input",
-  OUTPUT = "output",
-  PROGRESS = "progress",
-}
-
-export interface LineOptions {
-  startDelay: number;
-  typeDelay: number;
-  progressLength: number;
-  progressChar: string;
-  progressPercent: number;
-  cursor: string;
-  type: LineType;
-  delay: number;
-}
-
-export type LineData = LineOptions & {
-  value: string;
-};
-
-export type TermynalOptions = Exclude<LineOptions, "delay" | "type"> & {
-  lineDelay: number;
-  prefix: string;
-  autoplay: boolean;
-};
+import "./termynal.css";
+import { LineData, LineOptions, LineType } from "./LineTypes";
+import TermynalOptions from "./TermynalOptions";
 
 const DefaultOptions: TermynalOptions = {
   prefix: "ty",
@@ -201,6 +178,7 @@ class Termynal {
 
   _getLineAttributes(el: HTMLElement): LineOptions {
     const options: LineOptions = {
+      delay: this._getAttributeAsFloat(el, "delay") || this.options.lineDelay,
       startDelay:
         this._getAttributeAsFloat(el, "startDelay") || this.options.startDelay,
       typeDelay:
@@ -217,6 +195,9 @@ class Termynal {
       cursor:
         el.getAttribute(`data-${this.options.prefix}-cursor`) ||
         this.options.cursor,
+      type:
+        (el.getAttribute(`data-${this.options.prefix}`) as LineType | null) ||
+        LineType.INPUT,
     };
     return options;
   }
