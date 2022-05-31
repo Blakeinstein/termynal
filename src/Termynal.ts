@@ -103,7 +103,7 @@ class Termynal {
     await this._wait(this.options.startDelay);
     for (const line of this.lines) {
       const type = line.type || LineType.OUTPUT;
-      const delay = line.delay;
+      const delay = line.delay || this.options.lineDelay;
       const el = document.createElement("pre");
       switch (type) {
         case LineType.PROGRESS:
@@ -113,7 +113,7 @@ class Termynal {
           await this.type(line);
           break;
         default:
-          el.innerText = line.value;
+          el.innerText = line.value || "";
           this.container.appendChild(el);
       }
       await this._wait(delay);
@@ -125,12 +125,11 @@ class Termynal {
    * @param {LineData} line - The line params to render.
    */
   async type(line: LineData) {
-    const chars = line.value.split("");
-    const delay = line.typeDelay;
+    const chars = line.value?.split("") || [];
+    const delay = line.typeDelay || this.options.typeDelay;
     const el = document.createElement("pre");
-    el.textContent = "";
+    el.textContent = line.prompt ? `${line.prompt} ` : "";
     this.container.appendChild(el);
-
     for (const char of chars) {
       await this._wait(delay);
       el.textContent += char;
@@ -142,13 +141,16 @@ class Termynal {
    * @param {LineData} line - The progress bar params element to render.
    */
   async progress(line: LineData) {
-    const { progressLength, progressChar, progressPercent } = line;
+    const progressLength = line.progressLength || this.options.progressLength;
+    const progressChar = line.progressChar || this.options.progressChar;
+    const progressPercent =
+      line.progressPercent || this.options.progressPercent;
     const chars = progressChar.repeat(progressLength);
     const el = document.createElement("span");
     el.textContent = "";
     this.container.appendChild(el);
 
-    const typeDelay = line.typeDelay;
+    const typeDelay = line.typeDelay || this.options.typeDelay;
     for (let i = 0; i <= progressLength; i++) {
       await this._wait(typeDelay);
       const percent = Math.round((i / progressLength) * 100);

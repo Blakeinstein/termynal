@@ -15,6 +15,7 @@ export interface LineOptions {
   delay: number;
 }
 
-export type LineData = LineOptions & {
-  value: string;
+export type LineData = Partial<LineOptions> & {
+  value?: string;
+  prompt?: string;
 };
