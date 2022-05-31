@@ -208,6 +208,7 @@ class Termynal {
       type:
         (el.getAttribute(`data-${this.options.prefix}`) as LineType | null) ||
         LineType.INPUT,
+      className: el.className || this.options.className,
     };
     return options;
   }
