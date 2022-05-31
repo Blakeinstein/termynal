@@ -1,6 +1,6 @@
 {
   "name": "termynal",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Rishikesh Anand (rishi1998@gmail.com)",
   "description": "An animated terminal emulator for the dom",
   "keywords": [

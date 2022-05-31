@@ -146,7 +146,7 @@ class Termynal {
     const progressPercent =
       line.progressPercent || this.options.progressPercent;
     const chars = progressChar.repeat(progressLength);
-    const el = document.createElement("span");
+    const el = document.createElement("pre");
     el.textContent = "";
     this.container.appendChild(el);
 
