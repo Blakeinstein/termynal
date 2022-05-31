@@ -6,4 +6,17 @@ type TermynalOptions = Omit<LineOptions, "delay" | "type"> & {
   autoplay: boolean;
 };
 
+export const DefaultOptions: TermynalOptions = {
+  prefix: "ty",
+  startDelay: 600,
+  typeDelay: 50,
+  lineDelay: 1500,
+  progressLength: 40,
+  progressChar: "█",
+  progressPercent: 100,
+  cursor: "▋",
+  autoplay: false,
+  class: "",
+};
+
 export default TermynalOptions;

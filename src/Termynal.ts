@@ -1,17 +1,5 @@
 import { LineData, LineOptions, LineType } from "./LineTypes";
-import TermynalOptions from "./TermynalOptions";
-
-const DefaultOptions: TermynalOptions = {
-  prefix: "ty",
-  startDelay: 600,
-  typeDelay: 50,
-  lineDelay: 1500,
-  progressLength: 40,
-  progressChar: "█",
-  progressPercent: 100,
-  cursor: "▋",
-  autoplay: false,
-};
+import TermynalOptions, { DefaultOptions } from "./TermynalOptions";
 
 /**
  * Termynal is a simple terminal emulator to simulate terminal interactions with ease.
@@ -113,6 +101,7 @@ class Termynal {
           await this.type(line);
           break;
         default:
+          el.className = "terymnal-output " + line.class || this.options.class;
           el.innerText = line.value || "";
           this.container.appendChild(el);
       }
@@ -128,6 +117,7 @@ class Termynal {
     const chars = line.value?.split("") || [];
     const delay = line.typeDelay || this.options.typeDelay;
     const el = document.createElement("pre");
+    el.className = "terymnal-input " + line.class || this.options.class;
     el.textContent = line.prompt ? `${line.prompt} ` : "";
     this.container.appendChild(el);
     for (const char of chars) {
@@ -147,6 +137,7 @@ class Termynal {
       line.progressPercent || this.options.progressPercent;
     const chars = progressChar.repeat(progressLength);
     const el = document.createElement("pre");
+    el.className = "terymnal-input " + line.class || this.options.class;
     el.textContent = "";
     this.container.appendChild(el);
 
