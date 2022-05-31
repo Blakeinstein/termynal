@@ -8,7 +8,7 @@ const getPackageName = () => {
 const config = {
   entries: [
     {
-      filePath: "./src/Termynal.ts",
+      filePath: "./src/index.ts",
       outFile: `./dist/${getPackageName()}.d.ts`,
       noCheck: false,
     },

@@ -1,4 +1,3 @@
-import "./termynal.css";
 import { LineData, LineOptions, LineType } from "./LineTypes";
 import TermynalOptions from "./TermynalOptions";
 

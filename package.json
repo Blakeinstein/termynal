@@ -1,14 +1,20 @@
 {
   "name": "termynal",
   "version": "0.0.2",
-  "main": "./dist/termynal.cjs",
+  "author": "Rishikesh Anand (rishi1998@gmail.com)",
   "description": "An animated terminal emulator for the dom",
   "keywords": [
     "terminal",
     "dom",
     "animation"
   ],
-  "module": "./dist/termynal.mjs",
+  "main": "./dist/cjs/termynal.js",
+  "module": "./dist/esm/termynal.js",
+  "umd:main": "./dist/umd/termynal.js",
+  "jsdelivr": "dist/umd/termynal.js",
+  "unpkg": "dist/umd/termynal.js",
+  "types": "./dist/termynal.d.ts",
+  "source": "./src/index.ts",
   "license": "MIT",
   "exports": {
     ".": {

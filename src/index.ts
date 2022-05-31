@@ -1,3 +1,4 @@
+import "./termynal.css";
 import Termynal from "./Termynal";
 
-new Termynal("#termynal", { autoplay: true });
+export default Termynal;

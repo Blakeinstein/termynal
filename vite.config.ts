@@ -15,18 +15,18 @@ const getPackageNameCamelCase = () => {
 };
 
 const fileName = {
-  es: `${getPackageName()}.mjs`,
-  cjs: `${getPackageName()}.cjs`,
-  iife: `${getPackageName()}.iife.js`,
+  es: `esm/${getPackageName()}.js`,
+  cjs: `cjs/${getPackageName()}.js`,
+  umd: `umd/${getPackageName()}.js`,
 };
 
 module.exports = defineConfig({
   base: "./",
   build: {
     lib: {
-      entry: path.resolve(__dirname, "src/Termynal.ts"),
+      entry: path.resolve(__dirname, "src/index.ts"),
       name: getPackageNameCamelCase(),
-      formats: ["es", "cjs", "iife"],
+      formats: ["es", "cjs", "umd"],
       fileName: (format) => fileName[format],
     },
     emptyOutDir: true,
