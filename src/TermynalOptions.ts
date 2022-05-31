@@ -16,7 +16,7 @@ export const DefaultOptions: TermynalOptions = {
   progressPercent: 100,
   cursor: "▋",
   autoplay: false,
-  class: "",
+  className: "",
 };
 
 export default TermynalOptions;

@@ -101,7 +101,8 @@ class Termynal {
           await this.type(line);
           break;
         default:
-          el.className = "terymnal-output " + line.class || this.options.class;
+          el.className =
+            "terymnal-output " + line.className || this.options.className;
           el.innerText = line.value || "";
           this.container.appendChild(el);
       }
@@ -117,7 +118,7 @@ class Termynal {
     const chars = line.value?.split("") || [];
     const delay = line.typeDelay || this.options.typeDelay;
     const el = document.createElement("pre");
-    el.className = "terymnal-input " + line.class || this.options.class;
+    el.className = "terymnal-input " + line.className || this.options.className;
     el.textContent = line.prompt ? `${line.prompt} ` : "";
     this.container.appendChild(el);
     for (const char of chars) {
@@ -137,7 +138,7 @@ class Termynal {
       line.progressPercent || this.options.progressPercent;
     const chars = progressChar.repeat(progressLength);
     const el = document.createElement("pre");
-    el.className = "terymnal-input " + line.class || this.options.class;
+    el.className = "terymnal-input " + line.className || this.options.className;
     el.textContent = "";
     this.container.appendChild(el);
 

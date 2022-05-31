@@ -13,7 +13,7 @@ export interface LineOptions {
   cursor: string;
   type: LineType;
   delay: number;
-  class: string;
+  className: string;
 }
 
 export type LineData = Partial<LineOptions> & {
